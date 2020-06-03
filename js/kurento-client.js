@@ -1,4 +1,4 @@
-require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+__kurento_require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof __kurento_require&&__kurento_require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof __kurento_require&&__kurento_require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2013-2015 Kurento (http://kurento.org/)
  *
@@ -15,31 +15,31 @@ require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c=
  * limitations under the License.
  */
 
-var EventEmitter = require('events').EventEmitter;
-var url = require('url');
+var EventEmitter = __kurento_require('events').EventEmitter;
+var url = __kurento_require('url');
 
-var async = require('async');
-var extend = require('extend');
-var inherits = require('inherits');
-var reconnect = require('reconnect-ws');
+var async = __kurento_require('async');
+var extend = __kurento_require('extend');
+var inherits = __kurento_require('inherits');
+var reconnect = __kurento_require('reconnect-ws');
 
-var checkType = require('./checkType');
+var checkType = __kurento_require('./checkType');
 
-var RpcBuilder = require('kurento-jsonrpc');
+var RpcBuilder = __kurento_require('kurento-jsonrpc');
 var JsonRPC = RpcBuilder.packers.JsonRPC;
 
-var promiseCallback = require('promisecallback');
+var promiseCallback = __kurento_require('promisecallback');
 
-var disguise = require('./disguise')
-var createPromise = require('./createPromise');
-var MediaObjectCreator = require('./MediaObjectCreator');
-var TransactionsManager = require('./TransactionsManager');
+var disguise = __kurento_require('./disguise')
+var createPromise = __kurento_require('./createPromise');
+var MediaObjectCreator = __kurento_require('./MediaObjectCreator');
+var TransactionsManager = __kurento_require('./TransactionsManager');
 
 var TransactionNotCommitedException = TransactionsManager
   .TransactionNotCommitedException;
 var transactionOperation = TransactionsManager.transactionOperation;
 
-var MediaObject = require('kurento-client-core').abstracts.MediaObject;
+var MediaObject = __kurento_require('kurento-client-core').abstracts.MediaObject;
 
 const MEDIA_OBJECT_TYPE_NOT_FOUND = 40100
 const MEDIA_OBJECT_NOT_FOUND = 40101
@@ -1159,7 +1159,7 @@ KurentoClient.getComplexType = function (complexType) {
 
 module.exports = KurentoClient;
 
-},{"./MediaObjectCreator":2,"./TransactionsManager":3,"./checkType":5,"./createPromise":6,"./disguise":7,"async":"async","events":21,"extend":22,"inherits":"inherits","kurento-client-core":"kurento-client-core","kurento-jsonrpc":117,"promisecallback":"promisecallback","reconnect-ws":143,"url":147}],2:[function(require,module,exports){
+},{"./MediaObjectCreator":2,"./TransactionsManager":3,"./checkType":5,"./createPromise":6,"./disguise":7,"async":"async","events":21,"extend":22,"inherits":"inherits","kurento-client-core":"kurento-client-core","kurento-jsonrpc":117,"promisecallback":"promisecallback","reconnect-ws":143,"url":147}],2:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014-2015 Kurento (http://kurento.org/)
  *
@@ -1176,16 +1176,16 @@ module.exports = KurentoClient;
  * limitations under the License.
  */
 
-var async = require('async');
+var async = __kurento_require('async');
 
-var checkType = require('./checkType');
+var checkType = __kurento_require('./checkType');
 var checkParams = checkType.checkParams;
-var extend = require('extend');
+var extend = __kurento_require('extend');
 
-var createPromise = require('./createPromise');
-var register = require('./register');
+var createPromise = __kurento_require('./createPromise');
+var register = __kurento_require('./register');
 
-var Transaction = require('./TransactionsManager').Transaction;
+var Transaction = __kurento_require('./TransactionsManager').Transaction;
 
 /**
  * Get the constructor for a type
@@ -1447,7 +1447,7 @@ function MediaObjectCreator(host, encodeCreate, encodeRpc, encodeTransaction,
 
 module.exports = MediaObjectCreator;
 
-},{"./TransactionsManager":3,"./checkType":5,"./createPromise":6,"./register":8,"async":"async","extend":22}],3:[function(require,module,exports){
+},{"./TransactionsManager":3,"./checkType":5,"./createPromise":6,"./register":8,"async":"async","extend":22}],3:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2013-2014 Kurento (http://kurento.org/)
  *
@@ -1465,11 +1465,11 @@ module.exports = MediaObjectCreator;
  *
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var Domain = require('domain').Domain || (function () {
+var Domain = __kurento_require('domain').Domain || (function () {
   function FakeDomain() {};
-  inherits(FakeDomain, require('events').EventEmitter);
+  inherits(FakeDomain, __kurento_require('events').EventEmitter);
   FakeDomain.prototype.run = function (fn) {
     try {
       fn()
@@ -1481,7 +1481,7 @@ var Domain = require('domain').Domain || (function () {
   return FakeDomain;
 })();
 
-var promiseCallback = require('promisecallback');
+var promiseCallback = __kurento_require('promisecallback');
 
 function onerror(error) {
   this._transactionError = error;
@@ -1666,15 +1666,15 @@ TransactionsManager.TransactionNotCommitedException =
   TransactionNotCommitedException;
 TransactionsManager.TransactionRollbackException = TransactionRollbackException;
 
-},{"domain":19,"events":21,"inherits":"inherits","promisecallback":"promisecallback"}],4:[function(require,module,exports){
+},{"domain":19,"events":21,"inherits":"inherits","promisecallback":"promisecallback"}],4:[function(__kurento_require,module,exports){
 /**
  * Loader for the kurento-client package on the browser
  */
 
 if (typeof kurentoClient == 'undefined')
-  window.kurentoClient = require('.');
+  window.kurentoClient = __kurento_require('.');
 
-},{".":"kurento-client"}],5:[function(require,module,exports){
+},{".":"kurento-client"}],5:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014 Kurento (http://kurento.org/)
  *
@@ -1823,7 +1823,7 @@ checkType.int = checkInteger;
 checkType.Object = checkObject;
 checkType.String = checkString;
 
-},{}],6:[function(require,module,exports){
+},{}],6:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014 Kurento (http://kurento.org/)
  *
@@ -1841,9 +1841,9 @@ checkType.String = checkString;
  *
  */
 
-var async = require('async');
-var disguise = require('./disguise')
-var promiseCallback = require('promisecallback');
+var async = __kurento_require('async');
+var disguise = __kurento_require('./disguise')
+var promiseCallback = __kurento_require('promisecallback');
 
 function createPromise(data, func, callback) {
   var promise = new Promise(function (resolve, reject) {
@@ -1864,7 +1864,7 @@ function createPromise(data, func, callback) {
 
 module.exports = createPromise;
 
-},{"./disguise":7,"async":"async","promisecallback":"promisecallback"}],7:[function(require,module,exports){
+},{"./disguise":7,"async":"async","promisecallback":"promisecallback"}],7:[function(__kurento_require,module,exports){
 /**
  * Generic `Promise.catch()` method
  *
@@ -1992,8 +1992,8 @@ disguiseThenable.unthenable = unthenable
 
 module.exports = disguiseThenable
 
-},{}],8:[function(require,module,exports){
-var checkType = require('./checkType');
+},{}],8:[function(__kurento_require,module,exports){
+var checkType = __kurento_require('./checkType');
 
 var abstracts = {};
 var classes = {};
@@ -2058,13 +2058,13 @@ function register(name, constructor) {
     name = undefined
   }
 
-  // Execute require if we only have a name
+  // Execute __kurento_require if we only have a name
   if (constructor == undefined)
-    return register(require(name));
+    return register(__kurento_require(name));
 
-  // Execute require if the constructor is set as a string
+  // Execute __kurento_require if the constructor is set as a string
   if (typeof constructor === 'string')
-    return register(name, require(constructor));
+    return register(name, __kurento_require(constructor));
 
   // Registering a function
   if (constructor instanceof Function) {
@@ -2113,16 +2113,16 @@ register.classes = classes;
 register.complexTypes = complexTypes;
 register.modules = modules;
 
-},{"./checkType":5}],9:[function(require,module,exports){
+},{"./checkType":5}],9:[function(__kurento_require,module,exports){
 /*
  * Copyright (c) 2012 Mathieu Turcotte
  * Licensed under the MIT license.
  */
 
-var Backoff = require('./lib/backoff');
-var ExponentialBackoffStrategy = require('./lib/strategy/exponential');
-var FibonacciBackoffStrategy = require('./lib/strategy/fibonacci');
-var FunctionCall = require('./lib/function_call.js');
+var Backoff = __kurento_require('./lib/backoff');
+var ExponentialBackoffStrategy = __kurento_require('./lib/strategy/exponential');
+var FibonacciBackoffStrategy = __kurento_require('./lib/strategy/fibonacci');
+var FunctionCall = __kurento_require('./lib/function_call.js');
 
 module.exports.Backoff = Backoff;
 module.exports.FunctionCall = FunctionCall;
@@ -2164,14 +2164,14 @@ module.exports.call = function(fn, vargs, callback) {
     return new FunctionCall(fn, vargs, callback);
 };
 
-},{"./lib/backoff":10,"./lib/function_call.js":11,"./lib/strategy/exponential":12,"./lib/strategy/fibonacci":13}],10:[function(require,module,exports){
+},{"./lib/backoff":10,"./lib/function_call.js":11,"./lib/strategy/exponential":12,"./lib/strategy/fibonacci":13}],10:[function(__kurento_require,module,exports){
 /*
  * Copyright (c) 2012 Mathieu Turcotte
  * Licensed under the MIT license.
  */
 
-var events = require('events');
-var util = require('util');
+var events = __kurento_require('events');
+var util = __kurento_require('util');
 
 /**
  * Backoff driver.
@@ -2250,17 +2250,17 @@ Backoff.prototype.reset = function() {
 
 module.exports = Backoff;
 
-},{"events":21,"util":151}],11:[function(require,module,exports){
+},{"events":21,"util":151}],11:[function(__kurento_require,module,exports){
 /*
  * Copyright (c) 2012 Mathieu Turcotte
  * Licensed under the MIT license.
  */
 
-var events = require('events');
-var util = require('util');
+var events = __kurento_require('events');
+var util = __kurento_require('util');
 
-var Backoff = require('./backoff');
-var FibonacciBackoffStrategy = require('./strategy/fibonacci');
+var Backoff = __kurento_require('./backoff');
+var FibonacciBackoffStrategy = __kurento_require('./strategy/fibonacci');
 
 /**
  * Returns true if the specified value is a function
@@ -2479,15 +2479,15 @@ FunctionCall.prototype.handleBackoff_ = function(number, delay, err) {
 
 module.exports = FunctionCall;
 
-},{"./backoff":10,"./strategy/fibonacci":13,"events":21,"util":151}],12:[function(require,module,exports){
+},{"./backoff":10,"./strategy/fibonacci":13,"events":21,"util":151}],12:[function(__kurento_require,module,exports){
 /*
  * Copyright (c) 2012 Mathieu Turcotte
  * Licensed under the MIT license.
  */
 
-var util = require('util');
+var util = __kurento_require('util');
 
-var BackoffStrategy = require('./strategy');
+var BackoffStrategy = __kurento_require('./strategy');
 
 /**
  * Exponential backoff strategy.
@@ -2515,15 +2515,15 @@ ExponentialBackoffStrategy.prototype.reset_ = function() {
 
 module.exports = ExponentialBackoffStrategy;
 
-},{"./strategy":14,"util":151}],13:[function(require,module,exports){
+},{"./strategy":14,"util":151}],13:[function(__kurento_require,module,exports){
 /*
  * Copyright (c) 2012 Mathieu Turcotte
  * Licensed under the MIT license.
  */
 
-var util = require('util');
+var util = __kurento_require('util');
 
-var BackoffStrategy = require('./strategy');
+var BackoffStrategy = __kurento_require('./strategy');
 
 /**
  * Fibonacci backoff strategy.
@@ -2552,14 +2552,14 @@ FibonacciBackoffStrategy.prototype.reset_ = function() {
 
 module.exports = FibonacciBackoffStrategy;
 
-},{"./strategy":14,"util":151}],14:[function(require,module,exports){
+},{"./strategy":14,"util":151}],14:[function(__kurento_require,module,exports){
 /*
  * Copyright (c) 2012 Mathieu Turcotte
  * Licensed under the MIT license.
  */
 
-var events = require('events');
-var util = require('util');
+var events = __kurento_require('events');
+var util = __kurento_require('util');
 
 function isDef(value) {
     return value !== undefined && value !== null;
@@ -2652,7 +2652,7 @@ BackoffStrategy.prototype.reset_ = function() {
 
 module.exports = BackoffStrategy;
 
-},{"events":21,"util":151}],15:[function(require,module,exports){
+},{"events":21,"util":151}],15:[function(__kurento_require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -2806,9 +2806,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],16:[function(require,module,exports){
+},{}],16:[function(__kurento_require,module,exports){
 
-},{}],17:[function(require,module,exports){
+},{}],17:[function(__kurento_require,module,exports){
 (function (Buffer){
 /*!
  * The buffer module from node.js, for the browser.
@@ -2820,8 +2820,8 @@ function fromByteArray (uint8) {
 
 'use strict'
 
-var base64 = require('base64-js')
-var ieee754 = require('ieee754')
+var base64 = __kurento_require('base64-js')
+var ieee754 = __kurento_require('ieee754')
 var customInspectSymbol =
   (typeof Symbol === 'function' && typeof Symbol.for === 'function')
     ? Symbol.for('nodejs.util.inspect.custom')
@@ -2854,7 +2854,7 @@ if (!Buffer.TYPED_ARRAY_SUPPORT && typeof console !== 'undefined' &&
     typeof console.error === 'function') {
   console.error(
     'This browser lacks typed array (Uint8Array) support which is required by ' +
-    '`buffer` v5.x. Use `buffer` v4.x if you require old browser support.'
+    '`buffer` v5.x. Use `buffer` v4.x if you __kurento_require old browser support.'
   )
 }
 
@@ -4610,8 +4610,8 @@ var hexSliceLookupTable = (function () {
   return table
 })()
 
-}).call(this,require("buffer").Buffer)
-},{"base64-js":15,"buffer":17,"ieee754":23}],18:[function(require,module,exports){
+}).call(this,__kurento_require("buffer").Buffer)
+},{"base64-js":15,"buffer":17,"ieee754":23}],18:[function(__kurento_require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4721,15 +4721,15 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-}).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":24}],19:[function(require,module,exports){
+}).call(this,{"isBuffer":__kurento_require("../../is-buffer/index.js")})
+},{"../../is-buffer/index.js":24}],19:[function(__kurento_require,module,exports){
 // This file should be ES5 compatible
 /* eslint prefer-spread:0, no-var:0, prefer-reflect:0, no-magic-numbers:0 */
 'use strict'
 
 module.exports = (function () {
 	// Import Events
-	var events = require('events')
+	var events = __kurento_require('events')
 
 	// Export Domain
 	var domain = {}
@@ -4794,7 +4794,7 @@ module.exports = (function () {
 	return domain
 }).call(this)
 
-},{"events":21}],20:[function(require,module,exports){
+},{"events":21}],20:[function(__kurento_require,module,exports){
 Object.defineProperty(Error.prototype, 'toJSON', {
     value: function () {
         var alt = {};
@@ -4808,7 +4808,7 @@ Object.defineProperty(Error.prototype, 'toJSON', {
     configurable: true
 });
 
-},{}],21:[function(require,module,exports){
+},{}],21:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5333,7 +5333,7 @@ function functionBindPolyfill(context) {
   };
 }
 
-},{}],22:[function(require,module,exports){
+},{}],22:[function(__kurento_require,module,exports){
 'use strict';
 
 var hasOwn = Object.prototype.hasOwnProperty;
@@ -5452,7 +5452,7 @@ module.exports = function extend() {
 	return target;
 };
 
-},{}],23:[function(require,module,exports){
+},{}],23:[function(__kurento_require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -5538,7 +5538,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],24:[function(require,module,exports){
+},{}],24:[function(__kurento_require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -5561,15 +5561,15 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],25:[function(require,module,exports){
+},{}],25:[function(__kurento_require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],26:[function(require,module,exports){
-var Buffer = require('buffer').Buffer;
+},{}],26:[function(__kurento_require,module,exports){
+var Buffer = __kurento_require('buffer').Buffer;
 
 module.exports = isBuffer;
 
@@ -5578,7 +5578,7 @@ function isBuffer (o) {
     || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
 }
 
-},{"buffer":17}],27:[function(require,module,exports){
+},{"buffer":17}],27:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -5597,15 +5597,15 @@ function isBuffer (o) {
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var MediaElement = require('./abstracts/MediaElement');
+var MediaElement = __kurento_require('./abstracts/MediaElement');
 
 
 /**
@@ -5666,7 +5666,7 @@ module.exports = HubPort;
 
 HubPort.check = checkHubPort;
 
-},{"./abstracts/MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],28:[function(require,module,exports){
+},{"./abstracts/MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],28:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -5685,9 +5685,9 @@ HubPort.check = checkHubPort;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -5702,7 +5702,7 @@ var TransactionsManager = kurentoClient.TransactionsManager;
 
 var transactionOperation = TransactionsManager.transactionOperation;
 
-var MediaObject = require('./abstracts/MediaObject');
+var MediaObject = __kurento_require('./abstracts/MediaObject');
 
 
 function noop(error, result) {
@@ -6007,7 +6007,7 @@ module.exports = MediaPipeline;
 
 MediaPipeline.check = checkMediaPipeline;
 
-},{"./abstracts/MediaObject":35,"inherits":"inherits","kurento-client":"kurento-client"}],29:[function(require,module,exports){
+},{"./abstracts/MediaObject":35,"inherits":"inherits","kurento-client":"kurento-client"}],29:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -6026,15 +6026,15 @@ MediaPipeline.check = checkMediaPipeline;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var MediaElement = require('./abstracts/MediaElement');
+var MediaElement = __kurento_require('./abstracts/MediaElement');
 
 
 /**
@@ -6095,7 +6095,7 @@ module.exports = PassThrough;
 
 PassThrough.check = checkPassThrough;
 
-},{"./abstracts/MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],30:[function(require,module,exports){
+},{"./abstracts/MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],30:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -6114,9 +6114,9 @@ PassThrough.check = checkPassThrough;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -6126,7 +6126,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var SdpEndpoint = require('./SdpEndpoint');
+var SdpEndpoint = __kurento_require('./SdpEndpoint');
 
 
 function noop(error, result) {
@@ -6946,7 +6946,7 @@ module.exports = BaseRtpEndpoint;
 
 BaseRtpEndpoint.check = checkBaseRtpEndpoint;
 
-},{"./SdpEndpoint":36,"inherits":"inherits","kurento-client":"kurento-client"}],31:[function(require,module,exports){
+},{"./SdpEndpoint":36,"inherits":"inherits","kurento-client":"kurento-client"}],31:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -6965,15 +6965,15 @@ BaseRtpEndpoint.check = checkBaseRtpEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var MediaElement = require('./MediaElement');
+var MediaElement = __kurento_require('./MediaElement');
 
 
 /**
@@ -7040,7 +7040,7 @@ module.exports = Endpoint;
 
 Endpoint.check = checkEndpoint;
 
-},{"./MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],32:[function(require,module,exports){
+},{"./MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],32:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -7059,15 +7059,15 @@ Endpoint.check = checkEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var MediaElement = require('./MediaElement');
+var MediaElement = __kurento_require('./MediaElement');
 
 
 /**
@@ -7123,7 +7123,7 @@ module.exports = Filter;
 
 Filter.check = checkFilter;
 
-},{"./MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],33:[function(require,module,exports){
+},{"./MediaElement":34,"inherits":"inherits","kurento-client":"kurento-client"}],33:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -7142,9 +7142,9 @@ Filter.check = checkFilter;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -7154,9 +7154,9 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var HubPort = require('../HubPort');
+var HubPort = __kurento_require('../HubPort');
 
-var MediaObject = require('./MediaObject');
+var MediaObject = __kurento_require('./MediaObject');
 
 
 function noop(error, result) {
@@ -7323,7 +7323,7 @@ module.exports = Hub;
 
 Hub.check = checkHub;
 
-},{"../HubPort":27,"./MediaObject":35,"inherits":"inherits","kurento-client":"kurento-client"}],34:[function(require,module,exports){
+},{"../HubPort":27,"./MediaObject":35,"inherits":"inherits","kurento-client":"kurento-client"}],34:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -7342,9 +7342,9 @@ Hub.check = checkHub;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -7355,11 +7355,11 @@ var checkArray = checkType.checkArray;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var each = require('async').each
+var each = __kurento_require('async').each
 
-var promiseCallback = require('promisecallback');
+var promiseCallback = __kurento_require('promisecallback');
 
-var MediaObject = require('./MediaObject');
+var MediaObject = __kurento_require('./MediaObject');
 
 
 function noop(error, result) {
@@ -8568,7 +8568,7 @@ module.exports = MediaElement;
 
 MediaElement.check = checkMediaElement;
 
-},{"./MediaObject":35,"async":"async","inherits":"inherits","kurento-client":"kurento-client","promisecallback":"promisecallback"}],35:[function(require,module,exports){
+},{"./MediaObject":35,"async":"async","inherits":"inherits","kurento-client":"kurento-client","promisecallback":"promisecallback"}],35:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -8587,9 +8587,9 @@ MediaElement.check = checkMediaElement;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -8599,9 +8599,9 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var promiseCallback = require('promisecallback');
+var promiseCallback = __kurento_require('promisecallback');
 
-var EventEmitter = require('events').EventEmitter;
+var EventEmitter = __kurento_require('events').EventEmitter;
 
 
 function noop(error, result) {
@@ -9537,7 +9537,7 @@ module.exports = MediaObject;
 
 MediaObject.check = checkMediaObject;
 
-},{"events":21,"inherits":"inherits","kurento-client":"kurento-client","promisecallback":"promisecallback"}],36:[function(require,module,exports){
+},{"events":21,"inherits":"inherits","kurento-client":"kurento-client","promisecallback":"promisecallback"}],36:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -9556,9 +9556,9 @@ MediaObject.check = checkMediaObject;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -9568,7 +9568,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var SessionEndpoint = require('./SessionEndpoint');
+var SessionEndpoint = __kurento_require('./SessionEndpoint');
 
 
 function noop(error, result) {
@@ -9580,7 +9580,7 @@ function noop(error, result) {
 
 /**
  * @classdesc
- *  Interface implemented by Endpoints that require an SDP negotiation for the 
+ *  Interface implemented by Endpoints that __kurento_require an SDP negotiation for the 
  *  setup
  *  of a networked media session with remote peers.
  *  <p>The API provides the following functionality:</p>
@@ -10057,7 +10057,7 @@ module.exports = SdpEndpoint;
 
 SdpEndpoint.check = checkSdpEndpoint;
 
-},{"./SessionEndpoint":38,"inherits":"inherits","kurento-client":"kurento-client"}],37:[function(require,module,exports){
+},{"./SessionEndpoint":38,"inherits":"inherits","kurento-client":"kurento-client"}],37:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -10076,9 +10076,9 @@ SdpEndpoint.check = checkSdpEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -10088,7 +10088,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var MediaObject = require('./MediaObject');
+var MediaObject = __kurento_require('./MediaObject');
 
 
 function noop(error, result) {
@@ -10476,7 +10476,7 @@ module.exports = ServerManager;
 
 ServerManager.check = checkServerManager;
 
-},{"./MediaObject":35,"inherits":"inherits","kurento-client":"kurento-client"}],38:[function(require,module,exports){
+},{"./MediaObject":35,"inherits":"inherits","kurento-client":"kurento-client"}],38:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -10495,20 +10495,20 @@ ServerManager.check = checkServerManager;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var Endpoint = require('./Endpoint');
+var Endpoint = __kurento_require('./Endpoint');
 
 
 /**
  * @classdesc
- *  All networked Endpoints that require to manage connection sessions with 
+ *  All networked Endpoints that __kurento_require to manage connection sessions with 
  *  remote peers implement this interface.
  *
  * @abstract
@@ -10558,7 +10558,7 @@ module.exports = SessionEndpoint;
 
 SessionEndpoint.check = checkSessionEndpoint;
 
-},{"./Endpoint":31,"inherits":"inherits","kurento-client":"kurento-client"}],39:[function(require,module,exports){
+},{"./Endpoint":31,"inherits":"inherits","kurento-client":"kurento-client"}],39:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -10577,9 +10577,9 @@ SessionEndpoint.check = checkSessionEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -10589,7 +10589,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Endpoint = require('./Endpoint');
+var Endpoint = __kurento_require('./Endpoint');
 
 
 function noop(error, result) {
@@ -10601,7 +10601,7 @@ function noop(error, result) {
 
 /**
  * @classdesc
- *  Interface for endpoints the require a URI to work.
+ *  Interface for endpoints the __kurento_require a URI to work.
  *  An example of this, would be a :rom:cls:`PlayerEndpoint` whose URI property 
  *  could be used to locate a file to stream.
  *
@@ -10787,7 +10787,7 @@ module.exports = UriEndpoint;
 
 UriEndpoint.check = checkUriEndpoint;
 
-},{"./Endpoint":31,"inherits":"inherits","kurento-client":"kurento-client"}],40:[function(require,module,exports){
+},{"./Endpoint":31,"inherits":"inherits","kurento-client":"kurento-client"}],40:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -10815,16 +10815,16 @@ UriEndpoint.check = checkUriEndpoint;
  * @license ALv2
  */
 
-var BaseRtpEndpoint = require('./BaseRtpEndpoint');
-var Endpoint = require('./Endpoint');
-var Filter = require('./Filter');
-var Hub = require('./Hub');
-var MediaElement = require('./MediaElement');
-var MediaObject = require('./MediaObject');
-var SdpEndpoint = require('./SdpEndpoint');
-var ServerManager = require('./ServerManager');
-var SessionEndpoint = require('./SessionEndpoint');
-var UriEndpoint = require('./UriEndpoint');
+var BaseRtpEndpoint = __kurento_require('./BaseRtpEndpoint');
+var Endpoint = __kurento_require('./Endpoint');
+var Filter = __kurento_require('./Filter');
+var Hub = __kurento_require('./Hub');
+var MediaElement = __kurento_require('./MediaElement');
+var MediaObject = __kurento_require('./MediaObject');
+var SdpEndpoint = __kurento_require('./SdpEndpoint');
+var ServerManager = __kurento_require('./ServerManager');
+var SessionEndpoint = __kurento_require('./SessionEndpoint');
+var UriEndpoint = __kurento_require('./UriEndpoint');
 
 
 exports.BaseRtpEndpoint = BaseRtpEndpoint;
@@ -10838,7 +10838,7 @@ exports.ServerManager = ServerManager;
 exports.SessionEndpoint = SessionEndpoint;
 exports.UriEndpoint = UriEndpoint;
 
-},{"./BaseRtpEndpoint":30,"./Endpoint":31,"./Filter":32,"./Hub":33,"./MediaElement":34,"./MediaObject":35,"./SdpEndpoint":36,"./ServerManager":37,"./SessionEndpoint":38,"./UriEndpoint":39}],41:[function(require,module,exports){
+},{"./BaseRtpEndpoint":30,"./Endpoint":31,"./Filter":32,"./Hub":33,"./MediaElement":34,"./MediaObject":35,"./SdpEndpoint":36,"./ServerManager":37,"./SessionEndpoint":38,"./UriEndpoint":39}],41:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -10857,14 +10857,14 @@ exports.UriEndpoint = UriEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -10941,7 +10941,7 @@ module.exports = AudioCaps;
 
 AudioCaps.check = checkAudioCaps;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],42:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],42:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -10960,7 +10960,7 @@ AudioCaps.check = checkAudioCaps;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -10992,7 +10992,7 @@ function checkAudioCodec(key, value)
 
 module.exports = checkAudioCodec;
 
-},{"kurento-client":"kurento-client"}],43:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],43:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11011,14 +11011,14 @@ module.exports = checkAudioCodec;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -11096,7 +11096,7 @@ module.exports = CodecConfiguration;
 
 CodecConfiguration.check = checkCodecConfiguration;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],44:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],44:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11115,7 +11115,7 @@ CodecConfiguration.check = checkCodecConfiguration;
  * limitations under the License.
  */
 
-var ChecktypeError = require('kurento-client').checkType.ChecktypeError;
+var ChecktypeError = __kurento_require('kurento-client').checkType.ChecktypeError;
 
 
 /**
@@ -11161,7 +11161,7 @@ module.exports = ComplexType;
 
 ComplexType.check = checkComplexType;
 
-},{"kurento-client":"kurento-client"}],45:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],45:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11180,7 +11180,7 @@ ComplexType.check = checkComplexType;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -11212,7 +11212,7 @@ function checkConnectionState(key, value)
 
 module.exports = checkConnectionState;
 
-},{"kurento-client":"kurento-client"}],46:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],46:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11231,14 +11231,14 @@ module.exports = checkConnectionState;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -11340,7 +11340,7 @@ module.exports = ElementConnectionData;
 
 ElementConnectionData.check = checkElementConnectionData;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],47:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],47:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11359,14 +11359,14 @@ ElementConnectionData.check = checkElementConnectionData;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var Stats = require('./Stats');
+var Stats = __kurento_require('./Stats');
 
 
 /**
@@ -11457,7 +11457,7 @@ module.exports = ElementStats;
 
 ElementStats.check = checkElementStats;
 
-},{"./Stats":77,"inherits":"inherits","kurento-client":"kurento-client"}],48:[function(require,module,exports){
+},{"./Stats":77,"inherits":"inherits","kurento-client":"kurento-client"}],48:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11476,14 +11476,14 @@ ElementStats.check = checkElementStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ElementStats = require('./ElementStats');
+var ElementStats = __kurento_require('./ElementStats');
 
 
 /**
@@ -11574,7 +11574,7 @@ module.exports = EndpointStats;
 
 EndpointStats.check = checkEndpointStats;
 
-},{"./ElementStats":47,"inherits":"inherits","kurento-client":"kurento-client"}],49:[function(require,module,exports){
+},{"./ElementStats":47,"inherits":"inherits","kurento-client":"kurento-client"}],49:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11593,7 +11593,7 @@ EndpointStats.check = checkEndpointStats;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -11626,7 +11626,7 @@ function checkFilterType(key, value)
 
 module.exports = checkFilterType;
 
-},{"kurento-client":"kurento-client"}],50:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],50:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11645,14 +11645,14 @@ module.exports = checkFilterType;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -11730,7 +11730,7 @@ module.exports = Fraction;
 
 Fraction.check = checkFraction;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],51:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],51:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11749,7 +11749,7 @@ Fraction.check = checkFraction;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -11781,7 +11781,7 @@ function checkGstreamerDotDetails(key, value)
 
 module.exports = checkGstreamerDotDetails;
 
-},{"kurento-client":"kurento-client"}],52:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],52:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11800,7 +11800,7 @@ module.exports = checkGstreamerDotDetails;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -11832,7 +11832,7 @@ function checkMediaFlowState(key, value)
 
 module.exports = checkMediaFlowState;
 
-},{"kurento-client":"kurento-client"}],53:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],53:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11851,14 +11851,14 @@ module.exports = checkMediaFlowState;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -11944,7 +11944,7 @@ module.exports = MediaLatencyStat;
 
 MediaLatencyStat.check = checkMediaLatencyStat;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],54:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],54:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -11963,7 +11963,7 @@ MediaLatencyStat.check = checkMediaLatencyStat;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -11995,7 +11995,7 @@ function checkMediaState(key, value)
 
 module.exports = checkMediaState;
 
-},{"kurento-client":"kurento-client"}],55:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],55:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12014,7 +12014,7 @@ module.exports = checkMediaState;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -12046,7 +12046,7 @@ function checkMediaTranscodingState(key, value)
 
 module.exports = checkMediaTranscodingState;
 
-},{"kurento-client":"kurento-client"}],56:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],56:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12065,7 +12065,7 @@ module.exports = checkMediaTranscodingState;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -12098,7 +12098,7 @@ function checkMediaType(key, value)
 
 module.exports = checkMediaType;
 
-},{"kurento-client":"kurento-client"}],57:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],57:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12117,14 +12117,14 @@ module.exports = checkMediaType;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -12219,7 +12219,7 @@ module.exports = ModuleInfo;
 
 ModuleInfo.check = checkModuleInfo;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],58:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],58:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12238,14 +12238,14 @@ ModuleInfo.check = checkModuleInfo;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -12340,7 +12340,7 @@ module.exports = RTCCertificateStats;
 
 RTCCertificateStats.check = checkRTCCertificateStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],59:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],59:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12359,14 +12359,14 @@ RTCCertificateStats.check = checkRTCCertificateStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -12472,7 +12472,7 @@ module.exports = RTCCodec;
 
 RTCCodec.check = checkRTCCodec;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],60:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],60:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12491,7 +12491,7 @@ RTCCodec.check = checkRTCCodec;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -12523,7 +12523,7 @@ function checkRTCDataChannelState(key, value)
 
 module.exports = checkRTCDataChannelState;
 
-},{"kurento-client":"kurento-client"}],61:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],61:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12542,14 +12542,14 @@ module.exports = checkRTCDataChannelState;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -12684,7 +12684,7 @@ module.exports = RTCDataChannelStats;
 
 RTCDataChannelStats.check = checkRTCDataChannelStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],62:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],62:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12703,14 +12703,14 @@ RTCDataChannelStats.check = checkRTCDataChannelStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -12828,7 +12828,7 @@ module.exports = RTCIceCandidateAttributes;
 
 RTCIceCandidateAttributes.check = checkRTCIceCandidateAttributes;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],63:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],63:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -12847,14 +12847,14 @@ RTCIceCandidateAttributes.check = checkRTCIceCandidateAttributes;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -13042,7 +13042,7 @@ module.exports = RTCIceCandidatePairStats;
 
 RTCIceCandidatePairStats.check = checkRTCIceCandidatePairStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],64:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],64:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -13061,14 +13061,14 @@ RTCIceCandidatePairStats.check = checkRTCIceCandidatePairStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCRTPStreamStats = require('./RTCRTPStreamStats');
+var RTCRTPStreamStats = __kurento_require('./RTCRTPStreamStats');
 
 
 /**
@@ -13157,7 +13157,7 @@ module.exports = RTCInboundRTPStreamStats;
 
 RTCInboundRTPStreamStats.check = checkRTCInboundRTPStreamStats;
 
-},{"./RTCRTPStreamStats":69,"inherits":"inherits","kurento-client":"kurento-client"}],65:[function(require,module,exports){
+},{"./RTCRTPStreamStats":69,"inherits":"inherits","kurento-client":"kurento-client"}],65:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -13176,14 +13176,14 @@ RTCInboundRTPStreamStats.check = checkRTCInboundRTPStreamStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -13262,7 +13262,7 @@ module.exports = RTCMediaStreamStats;
 
 RTCMediaStreamStats.check = checkRTCMediaStreamStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],66:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],66:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -13281,14 +13281,14 @@ RTCMediaStreamStats.check = checkRTCMediaStreamStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -13483,7 +13483,7 @@ module.exports = RTCMediaStreamTrackStats;
 
 RTCMediaStreamTrackStats.check = checkRTCMediaStreamTrackStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],67:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],67:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -13502,14 +13502,14 @@ RTCMediaStreamTrackStats.check = checkRTCMediaStreamTrackStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCRTPStreamStats = require('./RTCRTPStreamStats');
+var RTCRTPStreamStats = __kurento_require('./RTCRTPStreamStats');
 
 
 /**
@@ -13608,7 +13608,7 @@ module.exports = RTCOutboundRTPStreamStats;
 
 RTCOutboundRTPStreamStats.check = checkRTCOutboundRTPStreamStats;
 
-},{"./RTCRTPStreamStats":69,"inherits":"inherits","kurento-client":"kurento-client"}],68:[function(require,module,exports){
+},{"./RTCRTPStreamStats":69,"inherits":"inherits","kurento-client":"kurento-client"}],68:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -13627,14 +13627,14 @@ RTCOutboundRTPStreamStats.check = checkRTCOutboundRTPStreamStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -13713,7 +13713,7 @@ module.exports = RTCPeerConnectionStats;
 
 RTCPeerConnectionStats.check = checkRTCPeerConnectionStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],69:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],69:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -13732,14 +13732,14 @@ RTCPeerConnectionStats.check = checkRTCPeerConnectionStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -13924,7 +13924,7 @@ module.exports = RTCRTPStreamStats;
 
 RTCRTPStreamStats.check = checkRTCRTPStreamStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],70:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],70:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -13943,14 +13943,14 @@ RTCRTPStreamStats.check = checkRTCRTPStreamStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var Stats = require('./Stats');
+var Stats = __kurento_require('./Stats');
 
 
 /**
@@ -14011,7 +14011,7 @@ module.exports = RTCStats;
 
 RTCStats.check = checkRTCStats;
 
-},{"./Stats":77,"inherits":"inherits","kurento-client":"kurento-client"}],71:[function(require,module,exports){
+},{"./Stats":77,"inherits":"inherits","kurento-client":"kurento-client"}],71:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14030,7 +14030,7 @@ RTCStats.check = checkRTCStats;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -14063,7 +14063,7 @@ function checkRTCStatsIceCandidatePairState(key, value)
 
 module.exports = checkRTCStatsIceCandidatePairState;
 
-},{"kurento-client":"kurento-client"}],72:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],72:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14082,7 +14082,7 @@ module.exports = checkRTCStatsIceCandidatePairState;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -14114,7 +14114,7 @@ function checkRTCStatsIceCandidateType(key, value)
 
 module.exports = checkRTCStatsIceCandidateType;
 
-},{"kurento-client":"kurento-client"}],73:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],73:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14133,14 +14133,14 @@ module.exports = checkRTCStatsIceCandidateType;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var RTCStats = require('./RTCStats');
+var RTCStats = __kurento_require('./RTCStats');
 
 
 /**
@@ -14270,7 +14270,7 @@ module.exports = RTCTransportStats;
 
 RTCTransportStats.check = checkRTCTransportStats;
 
-},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],74:[function(require,module,exports){
+},{"./RTCStats":70,"inherits":"inherits","kurento-client":"kurento-client"}],74:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14289,14 +14289,14 @@ RTCTransportStats.check = checkRTCTransportStats;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -14467,7 +14467,7 @@ module.exports = RembParams;
 
 RembParams.check = checkRembParams;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],75:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],75:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14486,14 +14486,14 @@ RembParams.check = checkRembParams;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -14588,7 +14588,7 @@ module.exports = ServerInfo;
 
 ServerInfo.check = checkServerInfo;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],76:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],76:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14607,7 +14607,7 @@ ServerInfo.check = checkServerInfo;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -14639,7 +14639,7 @@ function checkServerType(key, value)
 
 module.exports = checkServerType;
 
-},{"kurento-client":"kurento-client"}],77:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],77:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14658,14 +14658,14 @@ module.exports = checkServerType;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -14761,7 +14761,7 @@ module.exports = Stats;
 
 Stats.check = checkStats;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],78:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],78:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14780,7 +14780,7 @@ Stats.check = checkStats;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -14812,7 +14812,7 @@ function checkStatsType(key, value)
 
 module.exports = checkStatsType;
 
-},{"kurento-client":"kurento-client"}],79:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],79:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14831,14 +14831,14 @@ module.exports = checkStatsType;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -14915,7 +14915,7 @@ module.exports = Tag;
 
 Tag.check = checkTag;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],80:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],80:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14934,7 +14934,7 @@ Tag.check = checkTag;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -14966,7 +14966,7 @@ function checkUriEndpointState(key, value)
 
 module.exports = checkUriEndpointState;
 
-},{"kurento-client":"kurento-client"}],81:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],81:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -14985,14 +14985,14 @@ module.exports = checkUriEndpointState;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
 
 /**
@@ -15069,7 +15069,7 @@ module.exports = VideoCaps;
 
 VideoCaps.check = checkVideoCaps;
 
-},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],82:[function(require,module,exports){
+},{"./ComplexType":44,"inherits":"inherits","kurento-client":"kurento-client"}],82:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -15088,7 +15088,7 @@ VideoCaps.check = checkVideoCaps;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -15120,7 +15120,7 @@ function checkVideoCodec(key, value)
 
 module.exports = checkVideoCodec;
 
-},{"kurento-client":"kurento-client"}],83:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],83:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -15148,49 +15148,49 @@ module.exports = checkVideoCodec;
  * @license ALv2
  */
 
-var ComplexType = require('./ComplexType');
+var ComplexType = __kurento_require('./ComplexType');
 
-var AudioCaps = require('./AudioCaps');
-var AudioCodec = require('./AudioCodec');
-var CodecConfiguration = require('./CodecConfiguration');
-var ConnectionState = require('./ConnectionState');
-var ElementConnectionData = require('./ElementConnectionData');
-var ElementStats = require('./ElementStats');
-var EndpointStats = require('./EndpointStats');
-var FilterType = require('./FilterType');
-var Fraction = require('./Fraction');
-var GstreamerDotDetails = require('./GstreamerDotDetails');
-var MediaFlowState = require('./MediaFlowState');
-var MediaLatencyStat = require('./MediaLatencyStat');
-var MediaState = require('./MediaState');
-var MediaTranscodingState = require('./MediaTranscodingState');
-var MediaType = require('./MediaType');
-var ModuleInfo = require('./ModuleInfo');
-var RembParams = require('./RembParams');
-var RTCCertificateStats = require('./RTCCertificateStats');
-var RTCCodec = require('./RTCCodec');
-var RTCDataChannelState = require('./RTCDataChannelState');
-var RTCDataChannelStats = require('./RTCDataChannelStats');
-var RTCIceCandidateAttributes = require('./RTCIceCandidateAttributes');
-var RTCIceCandidatePairStats = require('./RTCIceCandidatePairStats');
-var RTCInboundRTPStreamStats = require('./RTCInboundRTPStreamStats');
-var RTCMediaStreamStats = require('./RTCMediaStreamStats');
-var RTCMediaStreamTrackStats = require('./RTCMediaStreamTrackStats');
-var RTCOutboundRTPStreamStats = require('./RTCOutboundRTPStreamStats');
-var RTCPeerConnectionStats = require('./RTCPeerConnectionStats');
-var RTCRTPStreamStats = require('./RTCRTPStreamStats');
-var RTCStats = require('./RTCStats');
-var RTCStatsIceCandidatePairState = require('./RTCStatsIceCandidatePairState');
-var RTCStatsIceCandidateType = require('./RTCStatsIceCandidateType');
-var RTCTransportStats = require('./RTCTransportStats');
-var ServerInfo = require('./ServerInfo');
-var ServerType = require('./ServerType');
-var Stats = require('./Stats');
-var StatsType = require('./StatsType');
-var Tag = require('./Tag');
-var UriEndpointState = require('./UriEndpointState');
-var VideoCaps = require('./VideoCaps');
-var VideoCodec = require('./VideoCodec');
+var AudioCaps = __kurento_require('./AudioCaps');
+var AudioCodec = __kurento_require('./AudioCodec');
+var CodecConfiguration = __kurento_require('./CodecConfiguration');
+var ConnectionState = __kurento_require('./ConnectionState');
+var ElementConnectionData = __kurento_require('./ElementConnectionData');
+var ElementStats = __kurento_require('./ElementStats');
+var EndpointStats = __kurento_require('./EndpointStats');
+var FilterType = __kurento_require('./FilterType');
+var Fraction = __kurento_require('./Fraction');
+var GstreamerDotDetails = __kurento_require('./GstreamerDotDetails');
+var MediaFlowState = __kurento_require('./MediaFlowState');
+var MediaLatencyStat = __kurento_require('./MediaLatencyStat');
+var MediaState = __kurento_require('./MediaState');
+var MediaTranscodingState = __kurento_require('./MediaTranscodingState');
+var MediaType = __kurento_require('./MediaType');
+var ModuleInfo = __kurento_require('./ModuleInfo');
+var RembParams = __kurento_require('./RembParams');
+var RTCCertificateStats = __kurento_require('./RTCCertificateStats');
+var RTCCodec = __kurento_require('./RTCCodec');
+var RTCDataChannelState = __kurento_require('./RTCDataChannelState');
+var RTCDataChannelStats = __kurento_require('./RTCDataChannelStats');
+var RTCIceCandidateAttributes = __kurento_require('./RTCIceCandidateAttributes');
+var RTCIceCandidatePairStats = __kurento_require('./RTCIceCandidatePairStats');
+var RTCInboundRTPStreamStats = __kurento_require('./RTCInboundRTPStreamStats');
+var RTCMediaStreamStats = __kurento_require('./RTCMediaStreamStats');
+var RTCMediaStreamTrackStats = __kurento_require('./RTCMediaStreamTrackStats');
+var RTCOutboundRTPStreamStats = __kurento_require('./RTCOutboundRTPStreamStats');
+var RTCPeerConnectionStats = __kurento_require('./RTCPeerConnectionStats');
+var RTCRTPStreamStats = __kurento_require('./RTCRTPStreamStats');
+var RTCStats = __kurento_require('./RTCStats');
+var RTCStatsIceCandidatePairState = __kurento_require('./RTCStatsIceCandidatePairState');
+var RTCStatsIceCandidateType = __kurento_require('./RTCStatsIceCandidateType');
+var RTCTransportStats = __kurento_require('./RTCTransportStats');
+var ServerInfo = __kurento_require('./ServerInfo');
+var ServerType = __kurento_require('./ServerType');
+var Stats = __kurento_require('./Stats');
+var StatsType = __kurento_require('./StatsType');
+var Tag = __kurento_require('./Tag');
+var UriEndpointState = __kurento_require('./UriEndpointState');
+var VideoCaps = __kurento_require('./VideoCaps');
+var VideoCodec = __kurento_require('./VideoCodec');
 
 
 exports.ComplexType = ComplexType;
@@ -15237,7 +15237,7 @@ exports.UriEndpointState = UriEndpointState;
 exports.VideoCaps = VideoCaps;
 exports.VideoCodec = VideoCodec;
 
-},{"./AudioCaps":41,"./AudioCodec":42,"./CodecConfiguration":43,"./ComplexType":44,"./ConnectionState":45,"./ElementConnectionData":46,"./ElementStats":47,"./EndpointStats":48,"./FilterType":49,"./Fraction":50,"./GstreamerDotDetails":51,"./MediaFlowState":52,"./MediaLatencyStat":53,"./MediaState":54,"./MediaTranscodingState":55,"./MediaType":56,"./ModuleInfo":57,"./RTCCertificateStats":58,"./RTCCodec":59,"./RTCDataChannelState":60,"./RTCDataChannelStats":61,"./RTCIceCandidateAttributes":62,"./RTCIceCandidatePairStats":63,"./RTCInboundRTPStreamStats":64,"./RTCMediaStreamStats":65,"./RTCMediaStreamTrackStats":66,"./RTCOutboundRTPStreamStats":67,"./RTCPeerConnectionStats":68,"./RTCRTPStreamStats":69,"./RTCStats":70,"./RTCStatsIceCandidatePairState":71,"./RTCStatsIceCandidateType":72,"./RTCTransportStats":73,"./RembParams":74,"./ServerInfo":75,"./ServerType":76,"./Stats":77,"./StatsType":78,"./Tag":79,"./UriEndpointState":80,"./VideoCaps":81,"./VideoCodec":82}],84:[function(require,module,exports){
+},{"./AudioCaps":41,"./AudioCodec":42,"./CodecConfiguration":43,"./ComplexType":44,"./ConnectionState":45,"./ElementConnectionData":46,"./ElementStats":47,"./EndpointStats":48,"./FilterType":49,"./Fraction":50,"./GstreamerDotDetails":51,"./MediaFlowState":52,"./MediaLatencyStat":53,"./MediaState":54,"./MediaTranscodingState":55,"./MediaType":56,"./ModuleInfo":57,"./RTCCertificateStats":58,"./RTCCodec":59,"./RTCDataChannelState":60,"./RTCDataChannelStats":61,"./RTCIceCandidateAttributes":62,"./RTCIceCandidatePairStats":63,"./RTCInboundRTPStreamStats":64,"./RTCMediaStreamStats":65,"./RTCMediaStreamTrackStats":66,"./RTCOutboundRTPStreamStats":67,"./RTCPeerConnectionStats":68,"./RTCRTPStreamStats":69,"./RTCStats":70,"./RTCStatsIceCandidatePairState":71,"./RTCStatsIceCandidateType":72,"./RTCTransportStats":73,"./RembParams":74,"./ServerInfo":75,"./ServerType":76,"./Stats":77,"./StatsType":78,"./Tag":79,"./UriEndpointState":80,"./VideoCaps":81,"./VideoCodec":82}],84:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -15256,9 +15256,9 @@ exports.VideoCodec = VideoCodec;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -15268,7 +15268,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Hub = require('kurento-client-core').abstracts.Hub;
+var Hub = __kurento_require('kurento-client-core').abstracts.Hub;
 
 
 function noop(error, result) {
@@ -15450,7 +15450,7 @@ module.exports = AlphaBlending;
 
 AlphaBlending.check = checkAlphaBlending;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],85:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],85:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -15469,15 +15469,15 @@ AlphaBlending.check = checkAlphaBlending;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var Hub = require('kurento-client-core').abstracts.Hub;
+var Hub = __kurento_require('kurento-client-core').abstracts.Hub;
 
 
 /**
@@ -15541,7 +15541,7 @@ module.exports = Composite;
 
 Composite.check = checkComposite;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],86:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],86:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -15560,9 +15560,9 @@ Composite.check = checkComposite;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -15572,7 +15572,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Hub = require('kurento-client-core').abstracts.Hub;
+var Hub = __kurento_require('kurento-client-core').abstracts.Hub;
 
 
 function noop(error, result) {
@@ -15686,7 +15686,7 @@ module.exports = Dispatcher;
 
 Dispatcher.check = checkDispatcher;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],87:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],87:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -15705,9 +15705,9 @@ Dispatcher.check = checkDispatcher;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -15717,7 +15717,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Hub = require('kurento-client-core').abstracts.Hub;
+var Hub = __kurento_require('kurento-client-core').abstracts.Hub;
 
 
 function noop(error, result) {
@@ -15856,7 +15856,7 @@ module.exports = DispatcherOneToMany;
 
 DispatcherOneToMany.check = checkDispatcherOneToMany;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],88:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],88:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -15875,15 +15875,15 @@ DispatcherOneToMany.check = checkDispatcherOneToMany;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var HttpEndpoint = require('./abstracts/HttpEndpoint');
+var HttpEndpoint = __kurento_require('./abstracts/HttpEndpoint');
 
 
 /**
@@ -15990,7 +15990,7 @@ module.exports = HttpPostEndpoint;
 
 HttpPostEndpoint.check = checkHttpPostEndpoint;
 
-},{"./abstracts/HttpEndpoint":94,"inherits":"inherits","kurento-client":"kurento-client"}],89:[function(require,module,exports){
+},{"./abstracts/HttpEndpoint":94,"inherits":"inherits","kurento-client":"kurento-client"}],89:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -16009,9 +16009,9 @@ HttpPostEndpoint.check = checkHttpPostEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -16021,7 +16021,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Hub = require('kurento-client-core').abstracts.Hub;
+var Hub = __kurento_require('kurento-client-core').abstracts.Hub;
 
 
 function noop(error, result) {
@@ -16186,7 +16186,7 @@ module.exports = Mixer;
 
 Mixer.check = checkMixer;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],90:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],90:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -16205,9 +16205,9 @@ Mixer.check = checkMixer;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -16217,7 +16217,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var UriEndpoint = require('kurento-client-core').abstracts.UriEndpoint;
+var UriEndpoint = __kurento_require('kurento-client-core').abstracts.UriEndpoint;
 
 
 function noop(error, result) {
@@ -16569,7 +16569,7 @@ module.exports = PlayerEndpoint;
 
 PlayerEndpoint.check = checkPlayerEndpoint;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],91:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],91:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -16588,9 +16588,9 @@ PlayerEndpoint.check = checkPlayerEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -16600,7 +16600,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var UriEndpoint = require('kurento-client-core').abstracts.UriEndpoint;
+var UriEndpoint = __kurento_require('kurento-client-core').abstracts.UriEndpoint;
 
 
 function noop(error, result) {
@@ -16921,7 +16921,7 @@ module.exports = RecorderEndpoint;
 
 RecorderEndpoint.check = checkRecorderEndpoint;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],92:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],92:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -16940,15 +16940,15 @@ RecorderEndpoint.check = checkRecorderEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var BaseRtpEndpoint = require('kurento-client-core').abstracts.BaseRtpEndpoint;
+var BaseRtpEndpoint = __kurento_require('kurento-client-core').abstracts.BaseRtpEndpoint;
 
 
 /**
@@ -17105,7 +17105,7 @@ module.exports = RtpEndpoint;
 
 RtpEndpoint.check = checkRtpEndpoint;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],93:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],93:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -17124,9 +17124,9 @@ RtpEndpoint.check = checkRtpEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -17136,7 +17136,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var BaseRtpEndpoint = require('kurento-client-core').abstracts.BaseRtpEndpoint;
+var BaseRtpEndpoint = __kurento_require('kurento-client-core').abstracts.BaseRtpEndpoint;
 
 
 function noop(error, result) {
@@ -18381,7 +18381,7 @@ module.exports = WebRtcEndpoint;
 
 WebRtcEndpoint.check = checkWebRtcEndpoint;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],94:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],94:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18400,9 +18400,9 @@ WebRtcEndpoint.check = checkWebRtcEndpoint;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -18412,7 +18412,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var SessionEndpoint = require('kurento-client-core').abstracts.SessionEndpoint;
+var SessionEndpoint = __kurento_require('kurento-client-core').abstracts.SessionEndpoint;
 
 
 function noop(error, result) {
@@ -18509,7 +18509,7 @@ module.exports = HttpEndpoint;
 
 HttpEndpoint.check = checkHttpEndpoint;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],95:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],95:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18537,12 +18537,12 @@ HttpEndpoint.check = checkHttpEndpoint;
  * @license ALv2
  */
 
-var HttpEndpoint = require('./HttpEndpoint');
+var HttpEndpoint = __kurento_require('./HttpEndpoint');
 
 
 exports.HttpEndpoint = HttpEndpoint;
 
-},{"./HttpEndpoint":94}],96:[function(require,module,exports){
+},{"./HttpEndpoint":94}],96:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18561,7 +18561,7 @@ exports.HttpEndpoint = HttpEndpoint;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -18593,7 +18593,7 @@ function checkCertificateKeyType(key, value)
 
 module.exports = checkCertificateKeyType;
 
-},{"kurento-client":"kurento-client"}],97:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],97:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18612,7 +18612,7 @@ module.exports = checkCertificateKeyType;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -18644,7 +18644,7 @@ function checkCryptoSuite(key, value)
 
 module.exports = checkCryptoSuite;
 
-},{"kurento-client":"kurento-client"}],98:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],98:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18663,14 +18663,14 @@ module.exports = checkCryptoSuite;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('kurento-client-core').complexTypes.ComplexType;
+var ComplexType = __kurento_require('kurento-client-core').complexTypes.ComplexType;
 
 
 /**
@@ -18759,7 +18759,7 @@ module.exports = IceCandidate;
 
 IceCandidate.check = checkIceCandidate;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],99:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],99:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18778,14 +18778,14 @@ IceCandidate.check = checkIceCandidate;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('kurento-client-core').complexTypes.ComplexType;
+var ComplexType = __kurento_require('kurento-client-core').complexTypes.ComplexType;
 
 
 /**
@@ -18880,7 +18880,7 @@ module.exports = IceCandidatePair;
 
 IceCandidatePair.check = checkIceCandidatePair;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],100:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],100:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18899,7 +18899,7 @@ IceCandidatePair.check = checkIceCandidatePair;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -18931,7 +18931,7 @@ function checkIceComponentState(key, value)
 
 module.exports = checkIceComponentState;
 
-},{"kurento-client":"kurento-client"}],101:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],101:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -18950,14 +18950,14 @@ module.exports = checkIceComponentState;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('kurento-client-core').complexTypes.ComplexType;
+var ComplexType = __kurento_require('kurento-client-core').complexTypes.ComplexType;
 
 
 /**
@@ -19043,7 +19043,7 @@ module.exports = IceConnection;
 
 IceConnection.check = checkIceConnection;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],102:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],102:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -19062,7 +19062,7 @@ IceConnection.check = checkIceConnection;
  * limitations under the License.
  */
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 
 
@@ -19095,7 +19095,7 @@ function checkMediaProfileSpecType(key, value)
 
 module.exports = checkMediaProfileSpecType;
 
-},{"kurento-client":"kurento-client"}],103:[function(require,module,exports){
+},{"kurento-client":"kurento-client"}],103:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -19114,14 +19114,14 @@ module.exports = checkMediaProfileSpecType;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('kurento-client-core').complexTypes.ComplexType;
+var ComplexType = __kurento_require('kurento-client-core').complexTypes.ComplexType;
 
 
 /**
@@ -19233,7 +19233,7 @@ module.exports = SDES;
 
 SDES.check = checkSDES;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],104:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],104:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -19252,14 +19252,14 @@ SDES.check = checkSDES;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var checkType = kurentoClient.checkType;
 var ChecktypeError = checkType.ChecktypeError;
 
-var ComplexType = require('kurento-client-core').complexTypes.ComplexType;
+var ComplexType = __kurento_require('kurento-client-core').complexTypes.ComplexType;
 
 
 /**
@@ -19353,7 +19353,7 @@ module.exports = VideoInfo;
 
 VideoInfo.check = checkVideoInfo;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],105:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],105:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -19381,15 +19381,15 @@ VideoInfo.check = checkVideoInfo;
  * @license ALv2
  */
 
-var CertificateKeyType = require('./CertificateKeyType');
-var CryptoSuite = require('./CryptoSuite');
-var IceCandidate = require('./IceCandidate');
-var IceCandidatePair = require('./IceCandidatePair');
-var IceComponentState = require('./IceComponentState');
-var IceConnection = require('./IceConnection');
-var MediaProfileSpecType = require('./MediaProfileSpecType');
-var SDES = require('./SDES');
-var VideoInfo = require('./VideoInfo');
+var CertificateKeyType = __kurento_require('./CertificateKeyType');
+var CryptoSuite = __kurento_require('./CryptoSuite');
+var IceCandidate = __kurento_require('./IceCandidate');
+var IceCandidatePair = __kurento_require('./IceCandidatePair');
+var IceComponentState = __kurento_require('./IceComponentState');
+var IceConnection = __kurento_require('./IceConnection');
+var MediaProfileSpecType = __kurento_require('./MediaProfileSpecType');
+var SDES = __kurento_require('./SDES');
+var VideoInfo = __kurento_require('./VideoInfo');
 
 
 exports.CertificateKeyType = CertificateKeyType;
@@ -19402,7 +19402,7 @@ exports.MediaProfileSpecType = MediaProfileSpecType;
 exports.SDES = SDES;
 exports.VideoInfo = VideoInfo;
 
-},{"./CertificateKeyType":96,"./CryptoSuite":97,"./IceCandidate":98,"./IceCandidatePair":99,"./IceComponentState":100,"./IceConnection":101,"./MediaProfileSpecType":102,"./SDES":103,"./VideoInfo":104}],106:[function(require,module,exports){
+},{"./CertificateKeyType":96,"./CryptoSuite":97,"./IceCandidate":98,"./IceCandidatePair":99,"./IceComponentState":100,"./IceConnection":101,"./MediaProfileSpecType":102,"./SDES":103,"./VideoInfo":104}],106:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -19421,9 +19421,9 @@ exports.VideoInfo = VideoInfo;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -19433,7 +19433,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Filter = require('kurento-client-core').abstracts.Filter;
+var Filter = __kurento_require('kurento-client-core').abstracts.Filter;
 
 
 function noop(error, result) {
@@ -19622,7 +19622,7 @@ module.exports = FaceOverlayFilter;
 
 FaceOverlayFilter.check = checkFaceOverlayFilter;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],107:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],107:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -19641,9 +19641,9 @@ FaceOverlayFilter.check = checkFaceOverlayFilter;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -19653,7 +19653,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Filter = require('kurento-client-core').abstracts.Filter;
+var Filter = __kurento_require('kurento-client-core').abstracts.Filter;
 
 
 function noop(error, result) {
@@ -19822,7 +19822,7 @@ module.exports = GStreamerFilter;
 
 GStreamerFilter.check = checkGStreamerFilter;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],108:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],108:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -19841,9 +19841,9 @@ GStreamerFilter.check = checkGStreamerFilter;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
@@ -19853,7 +19853,7 @@ var ChecktypeError = checkType.ChecktypeError;
 
 var Transaction = kurentoClient.TransactionsManager.Transaction;
 
-var Filter = require('kurento-client-core').abstracts.Filter;
+var Filter = __kurento_require('kurento-client-core').abstracts.Filter;
 
 
 function noop(error, result) {
@@ -20040,7 +20040,7 @@ module.exports = ImageOverlayFilter;
 
 ImageOverlayFilter.check = checkImageOverlayFilter;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],109:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],109:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -20059,15 +20059,15 @@ ImageOverlayFilter.check = checkImageOverlayFilter;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var Filter = require('kurento-client-core').abstracts.Filter;
+var Filter = __kurento_require('kurento-client-core').abstracts.Filter;
 
 
 /**
@@ -20132,7 +20132,7 @@ module.exports = ZBarFilter;
 
 ZBarFilter.check = checkZBarFilter;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],110:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],110:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -20151,15 +20151,15 @@ ZBarFilter.check = checkZBarFilter;
  * limitations under the License.
  */
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var kurentoClient = require('kurento-client');
+var kurentoClient = __kurento_require('kurento-client');
 
 var disguise = kurentoClient.disguise;
 
 var ChecktypeError = kurentoClient.checkType.ChecktypeError;
 
-var Filter = require('kurento-client-core').abstracts.Filter;
+var Filter = __kurento_require('kurento-client-core').abstracts.Filter;
 
 
 /**
@@ -20210,7 +20210,7 @@ module.exports = OpenCVFilter;
 
 OpenCVFilter.check = checkOpenCVFilter;
 
-},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],111:[function(require,module,exports){
+},{"inherits":"inherits","kurento-client":"kurento-client","kurento-client-core":"kurento-client-core"}],111:[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -20238,12 +20238,12 @@ OpenCVFilter.check = checkOpenCVFilter;
  * @license ALv2
  */
 
-var OpenCVFilter = require('./OpenCVFilter');
+var OpenCVFilter = __kurento_require('./OpenCVFilter');
 
 
 exports.OpenCVFilter = OpenCVFilter;
 
-},{"./OpenCVFilter":110}],112:[function(require,module,exports){
+},{"./OpenCVFilter":110}],112:[function(__kurento_require,module,exports){
 function Mapper() {
   var sources = {};
 
@@ -20303,7 +20303,7 @@ Mapper.prototype.pop = function (id, source) {
 
 module.exports = Mapper;
 
-},{}],113:[function(require,module,exports){
+},{}],113:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014 Kurento (http://kurento.org/)
  *
@@ -20321,11 +20321,11 @@ module.exports = Mapper;
  *
  */
 
-var JsonRpcClient = require('./jsonrpcclient');
+var JsonRpcClient = __kurento_require('./jsonrpcclient');
 
 exports.JsonRpcClient = JsonRpcClient;
 
-},{"./jsonrpcclient":114}],114:[function(require,module,exports){
+},{"./jsonrpcclient":114}],114:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014 Kurento (http://kurento.org/)
  *
@@ -20343,8 +20343,8 @@ exports.JsonRpcClient = JsonRpcClient;
  *
  */
 
-var RpcBuilder = require('../..');
-var WebSocketWithReconnection = require(
+var RpcBuilder = __kurento_require('../..');
+var WebSocketWithReconnection = __kurento_require(
   './transports/webSocketWithReconnection');
 
 Date.now = Date.now || function () {
@@ -20613,7 +20613,7 @@ function JsonRpcClient(configuration) {
 
 module.exports = JsonRpcClient;
 
-},{"../..":117,"./transports/webSocketWithReconnection":116}],115:[function(require,module,exports){
+},{"../..":117,"./transports/webSocketWithReconnection":116}],115:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014 Kurento (http://kurento.org/)
  *
@@ -20631,11 +20631,11 @@ module.exports = JsonRpcClient;
  *
  */
 
-var WebSocketWithReconnection = require('./webSocketWithReconnection');
+var WebSocketWithReconnection = __kurento_require('./webSocketWithReconnection');
 
 exports.WebSocketWithReconnection = WebSocketWithReconnection;
 
-},{"./webSocketWithReconnection":116}],116:[function(require,module,exports){
+},{"./webSocketWithReconnection":116}],116:[function(__kurento_require,module,exports){
 (function (global){
 /*
  * (C) Copyright 2013-2015 Kurento (http://kurento.org/)
@@ -20668,11 +20668,11 @@ var Logger = console;
 var WebSocket = BrowserWebSocket;
 if (!WebSocket && typeof window === 'undefined') {
   try {
-    WebSocket = require('ws');
+    WebSocket = __kurento_require('ws');
   } catch (e) {}
 }
 
-//var SockJS = require('sockjs-client');
+//var SockJS = __kurento_require('sockjs-client');
 
 var MAX_RETRIES = 2000; // Forever...
 var RETRY_TIME_MS = 3000; // FIXME: Implement exponential wait times...
@@ -20885,7 +20885,7 @@ function WebSocketWithReconnection(config) {
 module.exports = WebSocketWithReconnection;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"ws":154}],117:[function(require,module,exports){
+},{"ws":154}],117:[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014 Kurento (http://kurento.org/)
  *
@@ -20940,12 +20940,12 @@ if (!Function.prototype.bind) {
   };
 }
 
-var EventEmitter = require('events').EventEmitter;
+var EventEmitter = __kurento_require('events').EventEmitter;
 
-var inherits = require('inherits');
+var inherits = __kurento_require('inherits');
 
-var packers = require('./packers');
-var Mapper = require('./Mapper');
+var packers = __kurento_require('./packers');
+var Mapper = __kurento_require('./Mapper');
 
 var BASE_TIMEOUT = 5000;
 
@@ -21617,14 +21617,14 @@ RpcBuilder.RpcNotification = RpcNotification;
 
 module.exports = RpcBuilder;
 
-var clients = require('./clients');
-var transports = require('./clients/transports');
+var clients = __kurento_require('./clients');
+var transports = __kurento_require('./clients/transports');
 
 RpcBuilder.clients = clients;
 RpcBuilder.clients.transports = transports;
 RpcBuilder.packers = packers;
 
-},{"./Mapper":112,"./clients":113,"./clients/transports":115,"./packers":120,"events":21,"inherits":"inherits"}],118:[function(require,module,exports){
+},{"./Mapper":112,"./clients":113,"./clients/transports":115,"./packers":120,"events":21,"inherits":"inherits"}],118:[function(__kurento_require,module,exports){
 /**
  * JsonRPC 2.0 packer
  */
@@ -21721,7 +21721,7 @@ function unpack(message) {
 exports.pack = pack;
 exports.unpack = unpack;
 
-},{}],119:[function(require,module,exports){
+},{}],119:[function(__kurento_require,module,exports){
 function pack(message) {
   throw new TypeError("Not yet implemented");
 };
@@ -21733,14 +21733,14 @@ function unpack(message) {
 exports.pack = pack;
 exports.unpack = unpack;
 
-},{}],120:[function(require,module,exports){
-var JsonRPC = require('./JsonRPC');
-var XmlRPC = require('./XmlRPC');
+},{}],120:[function(__kurento_require,module,exports){
+var JsonRPC = __kurento_require('./JsonRPC');
+var XmlRPC = __kurento_require('./XmlRPC');
 
 exports.JsonRPC = JsonRPC;
 exports.XmlRPC = XmlRPC;
 
-},{"./JsonRPC":118,"./XmlRPC":119}],121:[function(require,module,exports){
+},{"./JsonRPC":118,"./XmlRPC":119}],121:[function(__kurento_require,module,exports){
 (function (process){
 'use strict';
 
@@ -21788,8 +21788,8 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 
-}).call(this,require('_process'))
-},{"_process":122}],122:[function(require,module,exports){
+}).call(this,__kurento_require('_process'))
+},{"_process":122}],122:[function(__kurento_require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -21975,7 +21975,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],123:[function(require,module,exports){
+},{}],123:[function(__kurento_require,module,exports){
 (function (global){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
@@ -22512,7 +22512,7 @@ process.umask = function() { return 0; };
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],124:[function(require,module,exports){
+},{}],124:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22598,7 +22598,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],125:[function(require,module,exports){
+},{}],125:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22685,16 +22685,16 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],126:[function(require,module,exports){
+},{}],126:[function(__kurento_require,module,exports){
 'use strict';
 
-exports.decode = exports.parse = require('./decode');
-exports.encode = exports.stringify = require('./encode');
+exports.decode = exports.parse = __kurento_require('./decode');
+exports.encode = exports.stringify = __kurento_require('./encode');
 
-},{"./decode":124,"./encode":125}],127:[function(require,module,exports){
-module.exports = require('./lib/_stream_duplex.js');
+},{"./decode":124,"./encode":125}],127:[function(__kurento_require,module,exports){
+module.exports = __kurento_require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":128}],128:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":128}],128:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22725,7 +22725,7 @@ module.exports = require('./lib/_stream_duplex.js');
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = __kurento_require('process-nextick-args');
 /*</replacement>*/
 
 /*<replacement>*/
@@ -22740,12 +22740,12 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = __kurento_require('core-util-is');
+util.inherits = __kurento_require('inherits');
 /*</replacement>*/
 
-var Readable = require('./_stream_readable');
-var Writable = require('./_stream_writable');
+var Readable = __kurento_require('./_stream_readable');
+var Writable = __kurento_require('./_stream_writable');
 
 util.inherits(Duplex, Readable);
 
@@ -22826,7 +22826,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"./_stream_readable":130,"./_stream_writable":132,"core-util-is":18,"inherits":"inherits","process-nextick-args":121}],129:[function(require,module,exports){
+},{"./_stream_readable":130,"./_stream_writable":132,"core-util-is":18,"inherits":"inherits","process-nextick-args":121}],129:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22856,11 +22856,11 @@ Duplex.prototype._destroy = function (err, cb) {
 
 module.exports = PassThrough;
 
-var Transform = require('./_stream_transform');
+var Transform = __kurento_require('./_stream_transform');
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = __kurento_require('core-util-is');
+util.inherits = __kurento_require('inherits');
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -22874,7 +22874,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":131,"core-util-is":18,"inherits":"inherits"}],130:[function(require,module,exports){
+},{"./_stream_transform":131,"core-util-is":18,"inherits":"inherits"}],130:[function(__kurento_require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -22901,13 +22901,13 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = __kurento_require('process-nextick-args');
 /*</replacement>*/
 
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = require('isarray');
+var isArray = __kurento_require('isarray');
 /*</replacement>*/
 
 /*<replacement>*/
@@ -22917,7 +22917,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = require('events').EventEmitter;
+var EE = __kurento_require('events').EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -22925,12 +22925,12 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = require('./internal/streams/stream');
+var Stream = __kurento_require('./internal/streams/stream');
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = require('safe-buffer').Buffer;
+var Buffer = __kurento_require('safe-buffer').Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -22942,12 +22942,12 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = __kurento_require('core-util-is');
+util.inherits = __kurento_require('inherits');
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = require('util');
+var debugUtil = __kurento_require('util');
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -22956,8 +22956,8 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = require('./internal/streams/BufferList');
-var destroyImpl = require('./internal/streams/destroy');
+var BufferList = __kurento_require('./internal/streams/BufferList');
+var destroyImpl = __kurento_require('./internal/streams/destroy');
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -22977,13 +22977,13 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || __kurento_require('./_stream_duplex');
 
   options = options || {};
 
   // Duplex streams are both readable and writable, but share
   // the same options object.
-  // However, some cases require setting options to different
+  // However, some cases __kurento_require setting options to different
   // values for the readable and the writable sides of the duplex stream.
   // These options can be provided separately as readableXXX and writableXXX.
   var isDuplex = stream instanceof Duplex;
@@ -23047,14 +23047,14 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
+    if (!StringDecoder) StringDecoder = __kurento_require('string_decoder/').StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
 }
 
 function Readable(options) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || __kurento_require('./_stream_duplex');
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -23203,7 +23203,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
+  if (!StringDecoder) StringDecoder = __kurento_require('string_decoder/').StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -23895,8 +23895,8 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":128,"./internal/streams/BufferList":133,"./internal/streams/destroy":134,"./internal/streams/stream":135,"_process":122,"core-util-is":18,"events":21,"inherits":"inherits","isarray":25,"process-nextick-args":121,"safe-buffer":136,"string_decoder/":137,"util":16}],131:[function(require,module,exports){
+}).call(this,__kurento_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":128,"./internal/streams/BufferList":133,"./internal/streams/destroy":134,"./internal/streams/stream":135,"_process":122,"core-util-is":18,"events":21,"inherits":"inherits","isarray":25,"process-nextick-args":121,"safe-buffer":136,"string_decoder/":137,"util":16}],131:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -23964,11 +23964,11 @@ function indexOf(xs, x) {
 
 module.exports = Transform;
 
-var Duplex = require('./_stream_duplex');
+var Duplex = __kurento_require('./_stream_duplex');
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = __kurento_require('core-util-is');
+util.inherits = __kurento_require('inherits');
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -24111,7 +24111,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":128,"core-util-is":18,"inherits":"inherits"}],132:[function(require,module,exports){
+},{"./_stream_duplex":128,"core-util-is":18,"inherits":"inherits"}],132:[function(__kurento_require,module,exports){
 (function (process,global,setImmediate){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -24142,7 +24142,7 @@ function done(stream, er, data) {
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = __kurento_require('process-nextick-args');
 /*</replacement>*/
 
 module.exports = Writable;
@@ -24179,23 +24179,23 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = __kurento_require('core-util-is');
+util.inherits = __kurento_require('inherits');
 /*</replacement>*/
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: require('util-deprecate')
+  deprecate: __kurento_require('util-deprecate')
 };
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = require('./internal/streams/stream');
+var Stream = __kurento_require('./internal/streams/stream');
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = require('safe-buffer').Buffer;
+var Buffer = __kurento_require('safe-buffer').Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -24206,20 +24206,20 @@ function _isUint8Array(obj) {
 
 /*</replacement>*/
 
-var destroyImpl = require('./internal/streams/destroy');
+var destroyImpl = __kurento_require('./internal/streams/destroy');
 
 util.inherits(Writable, Stream);
 
 function nop() {}
 
 function WritableState(options, stream) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || __kurento_require('./_stream_duplex');
 
   options = options || {};
 
   // Duplex streams are both readable and writable, but share
   // the same options object.
-  // However, some cases require setting options to different
+  // However, some cases __kurento_require setting options to different
   // values for the readable and the writable sides of the duplex stream.
   // These options can be provided separately as readableXXX and writableXXX.
   var isDuplex = stream instanceof Duplex;
@@ -24363,7 +24363,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || __kurento_require('./_stream_duplex');
 
   // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
@@ -24800,14 +24800,14 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"./_stream_duplex":128,"./internal/streams/destroy":134,"./internal/streams/stream":135,"_process":122,"core-util-is":18,"inherits":"inherits","process-nextick-args":121,"safe-buffer":136,"timers":146,"util-deprecate":149}],133:[function(require,module,exports){
+}).call(this,__kurento_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},__kurento_require("timers").setImmediate)
+},{"./_stream_duplex":128,"./internal/streams/destroy":134,"./internal/streams/stream":135,"_process":122,"core-util-is":18,"inherits":"inherits","process-nextick-args":121,"safe-buffer":136,"timers":146,"util-deprecate":149}],133:[function(__kurento_require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = require('safe-buffer').Buffer;
-var util = require('util');
+var Buffer = __kurento_require('safe-buffer').Buffer;
+var util = __kurento_require('util');
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -24881,12 +24881,12 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":136,"util":16}],134:[function(require,module,exports){
+},{"safe-buffer":136,"util":16}],134:[function(__kurento_require,module,exports){
 'use strict';
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = __kurento_require('process-nextick-args');
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -24956,12 +24956,12 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":121}],135:[function(require,module,exports){
-module.exports = require('events').EventEmitter;
+},{"process-nextick-args":121}],135:[function(__kurento_require,module,exports){
+module.exports = __kurento_require('events').EventEmitter;
 
-},{"events":21}],136:[function(require,module,exports){
+},{"events":21}],136:[function(__kurento_require,module,exports){
 /* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
+var buffer = __kurento_require('buffer')
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -24973,7 +24973,7 @@ function copyProps (src, dst) {
 if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
   module.exports = buffer
 } else {
-  // Copy properties from require('buffer')
+  // Copy properties from __kurento_require('buffer')
   copyProps(buffer, exports)
   exports.Buffer = SafeBuffer
 }
@@ -25023,7 +25023,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":17}],137:[function(require,module,exports){
+},{"buffer":17}],137:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25049,7 +25049,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 /*<replacement>*/
 
-var Buffer = require('safe-buffer').Buffer;
+var Buffer = __kurento_require('safe-buffer').Buffer;
 /*</replacement>*/
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
@@ -25320,27 +25320,27 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":136}],138:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
+},{"safe-buffer":136}],138:[function(__kurento_require,module,exports){
+module.exports = __kurento_require('./readable').PassThrough
 
-},{"./readable":139}],139:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
+},{"./readable":139}],139:[function(__kurento_require,module,exports){
+exports = module.exports = __kurento_require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
+exports.Writable = __kurento_require('./lib/_stream_writable.js');
+exports.Duplex = __kurento_require('./lib/_stream_duplex.js');
+exports.Transform = __kurento_require('./lib/_stream_transform.js');
+exports.PassThrough = __kurento_require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":128,"./lib/_stream_passthrough.js":129,"./lib/_stream_readable.js":130,"./lib/_stream_transform.js":131,"./lib/_stream_writable.js":132}],140:[function(require,module,exports){
-module.exports = require('./readable').Transform
+},{"./lib/_stream_duplex.js":128,"./lib/_stream_passthrough.js":129,"./lib/_stream_readable.js":130,"./lib/_stream_transform.js":131,"./lib/_stream_writable.js":132}],140:[function(__kurento_require,module,exports){
+module.exports = __kurento_require('./readable').Transform
 
-},{"./readable":139}],141:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
+},{"./readable":139}],141:[function(__kurento_require,module,exports){
+module.exports = __kurento_require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":132}],142:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-var backoff = require('backoff')
+},{"./lib/_stream_writable.js":132}],142:[function(__kurento_require,module,exports){
+var EventEmitter = __kurento_require('events').EventEmitter
+var backoff = __kurento_require('backoff')
 
 module.exports =
 function (createConnection) {
@@ -25466,9 +25466,9 @@ function (createConnection) {
 
 }
 
-},{"backoff":9,"events":21}],143:[function(require,module,exports){
-var websocket = require('websocket-stream');
-var inject = require('reconnect-core');
+},{"backoff":9,"events":21}],143:[function(__kurento_require,module,exports){
+var websocket = __kurento_require('websocket-stream');
+var inject = __kurento_require('reconnect-core');
 
 module.exports = inject(function () {
   // Create new websocket-stream instance
@@ -25485,7 +25485,7 @@ module.exports = inject(function () {
   return ws;
 });
 
-},{"reconnect-core":142,"websocket-stream":152}],144:[function(require,module,exports){
+},{"reconnect-core":142,"websocket-stream":152}],144:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25509,15 +25509,15 @@ module.exports = inject(function () {
 
 module.exports = Stream;
 
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
+var EE = __kurento_require('events').EventEmitter;
+var inherits = __kurento_require('inherits');
 
 inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
+Stream.Readable = __kurento_require('readable-stream/readable.js');
+Stream.Writable = __kurento_require('readable-stream/writable.js');
+Stream.Duplex = __kurento_require('readable-stream/duplex.js');
+Stream.Transform = __kurento_require('readable-stream/transform.js');
+Stream.PassThrough = __kurento_require('readable-stream/passthrough.js');
 
 // Backwards-compat with node 0.4.x
 Stream.Stream = Stream;
@@ -25614,9 +25614,9 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":21,"inherits":"inherits","readable-stream/duplex.js":127,"readable-stream/passthrough.js":138,"readable-stream/readable.js":139,"readable-stream/transform.js":140,"readable-stream/writable.js":141}],145:[function(require,module,exports){
+},{"events":21,"inherits":"inherits","readable-stream/duplex.js":127,"readable-stream/passthrough.js":138,"readable-stream/readable.js":139,"readable-stream/transform.js":140,"readable-stream/writable.js":141}],145:[function(__kurento_require,module,exports){
 (function (process){
-var Stream = require('stream')
+var Stream = __kurento_require('stream')
 
 // through
 //
@@ -25725,10 +25725,10 @@ function through (write, end, opts) {
 }
 
 
-}).call(this,require('_process'))
-},{"_process":122,"stream":144}],146:[function(require,module,exports){
+}).call(this,__kurento_require('_process'))
+},{"_process":122,"stream":144}],146:[function(__kurento_require,module,exports){
 (function (setImmediate,clearImmediate){
-var nextTick = require('process/browser.js').nextTick;
+var nextTick = __kurento_require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
 var slice = Array.prototype.slice;
 var immediateIds = {};
@@ -25804,8 +25804,8 @@ exports.setImmediate = typeof setImmediate === "function" ? setImmediate : funct
 exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
   delete immediateIds[id];
 };
-}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":122,"timers":146}],147:[function(require,module,exports){
+}).call(this,__kurento_require("timers").setImmediate,__kurento_require("timers").clearImmediate)
+},{"process/browser.js":122,"timers":146}],147:[function(__kurento_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25829,8 +25829,8 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
 'use strict';
 
-var punycode = require('punycode');
-var util = require('./util');
+var punycode = __kurento_require('punycode');
+var util = __kurento_require('./util');
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -25905,7 +25905,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = require('querystring');
+    querystring = __kurento_require('querystring');
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -26539,7 +26539,7 @@ Url.prototype.parseHost = function() {
   if (host) this.hostname = host;
 };
 
-},{"./util":148,"punycode":123,"querystring":126}],148:[function(require,module,exports){
+},{"./util":148,"punycode":123,"querystring":126}],148:[function(__kurento_require,module,exports){
 'use strict';
 
 module.exports = {
@@ -26557,7 +26557,7 @@ module.exports = {
   }
 };
 
-},{}],149:[function(require,module,exports){
+},{}],149:[function(__kurento_require,module,exports){
 (function (global){
 
 /**
@@ -26628,14 +26628,14 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],150:[function(require,module,exports){
+},{}],150:[function(__kurento_require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],151:[function(require,module,exports){
+},{}],151:[function(__kurento_require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -27162,7 +27162,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = require('./support/isBuffer');
+exports.isBuffer = __kurento_require('./support/isBuffer');
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -27206,7 +27206,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = require('inherits');
+exports.inherits = __kurento_require('inherits');
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -27224,12 +27224,12 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":150,"_process":122,"inherits":"inherits"}],152:[function(require,module,exports){
+}).call(this,__kurento_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./support/isBuffer":150,"_process":122,"inherits":"inherits"}],152:[function(__kurento_require,module,exports){
 (function (process){
-var through = require('through')
-var isBuffer = require('isbuffer')
-var WebSocketPoly = require('ws')
+var through = __kurento_require('through')
+var isBuffer = __kurento_require('isbuffer')
+var WebSocketPoly = __kurento_require('ws')
 
 function WebsocketStream(server, options) {
   if (!(this instanceof WebsocketStream)) return new WebsocketStream(server, options)
@@ -27320,8 +27320,8 @@ WebsocketStream.prototype.end = function(data) {
   this._end = true
 }
 
-}).call(this,require('_process'))
-},{"_process":122,"isbuffer":26,"through":145,"ws":153}],153:[function(require,module,exports){
+}).call(this,__kurento_require('_process'))
+},{"_process":122,"isbuffer":26,"through":145,"ws":153}],153:[function(__kurento_require,module,exports){
 
 /**
  * Module dependencies.
@@ -27366,7 +27366,7 @@ function ws(uri, protocols, opts) {
 
 if (WebSocket) ws.prototype = WebSocket.prototype;
 
-},{}],154:[function(require,module,exports){
+},{}],154:[function(__kurento_require,module,exports){
 'use strict';
 
 module.exports = function() {
@@ -27376,7 +27376,7 @@ module.exports = function() {
   );
 };
 
-},{}],"async":[function(require,module,exports){
+},{}],"async":[function(__kurento_require,module,exports){
 (function (process,global,setImmediate){
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -28137,7 +28137,7 @@ var freeProcess = moduleExports$1 && freeGlobal.process;
 var nodeUtil = (function() {
   try {
     // Use `util.types` for Node.js 10+.
-    var types = freeModule$1 && freeModule$1.require && freeModule$1.require('util').types;
+    var types = freeModule$1 && freeModule$1.__kurento_require && freeModule$1.__kurento_require('util').types;
 
     if (types) {
       return types;
@@ -29475,7 +29475,7 @@ function autoInject(tasks, callback) {
         } else {
             params = parseParams(taskFn);
             if (taskFn.length === 0 && !fnIsAsync && params.length === 0) {
-                throw new Error("autoInject task functions require explicit parameters.");
+                throw new Error("autoInject task functions __kurento_require explicit parameters.");
             }
 
             // remove callback param
@@ -32988,8 +32988,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"_process":122,"timers":146}],"es6-promise":[function(require,module,exports){
+}).call(this,__kurento_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},__kurento_require("timers").setImmediate)
+},{"_process":122,"timers":146}],"es6-promise":[function(__kurento_require,module,exports){
 (function (process,global){
 /*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
@@ -33129,7 +33129,7 @@ function flush() {
 
 function attemptVertx() {
   try {
-    var vertx = Function('return this')().require('vertx');
+    var vertx = Function('return this')().__kurento_require('vertx');
     vertxNext = vertx.runOnLoop || vertx.runOnContext;
     return useVertxTimer();
   } catch (e) {
@@ -33145,7 +33145,7 @@ if (isNode) {
   scheduleFlush = useMutationObserver();
 } else if (isWorker) {
   scheduleFlush = useMessageChannel();
-} else if (browserWindow === undefined && typeof require === 'function') {
+} else if (browserWindow === undefined && typeof __kurento_require === 'function') {
   scheduleFlush = attemptVertx();
 } else {
   scheduleFlush = useSetTimeout();
@@ -34166,8 +34166,8 @@ return Promise$1;
 
 
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":122}],"inherits":[function(require,module,exports){
+}).call(this,__kurento_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"_process":122}],"inherits":[function(__kurento_require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -34196,7 +34196,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],"kurento-client-core":[function(require,module,exports){
+},{}],"kurento-client-core":[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -34228,19 +34228,19 @@ Object.defineProperty(exports, 'name',    {value: 'core'});
 Object.defineProperty(exports, 'version', {value: '6.13.1-dev'});
 
 
-var HubPort = require('./HubPort');
-var MediaPipeline = require('./MediaPipeline');
-var PassThrough = require('./PassThrough');
+var HubPort = __kurento_require('./HubPort');
+var MediaPipeline = __kurento_require('./MediaPipeline');
+var PassThrough = __kurento_require('./PassThrough');
 
 
 exports.HubPort = HubPort;
 exports.MediaPipeline = MediaPipeline;
 exports.PassThrough = PassThrough;
 
-exports.abstracts    = require('./abstracts');
-exports.complexTypes = require('./complexTypes');
+exports.abstracts    = __kurento_require('./abstracts');
+exports.complexTypes = __kurento_require('./complexTypes');
 
-},{"./HubPort":27,"./MediaPipeline":28,"./PassThrough":29,"./abstracts":40,"./complexTypes":83}],"kurento-client-elements":[function(require,module,exports){
+},{"./HubPort":27,"./MediaPipeline":28,"./PassThrough":29,"./abstracts":40,"./complexTypes":83}],"kurento-client-elements":[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -34272,16 +34272,16 @@ Object.defineProperty(exports, 'name',    {value: 'elements'});
 Object.defineProperty(exports, 'version', {value: '6.13.1-dev'});
 
 
-var AlphaBlending = require('./AlphaBlending');
-var Composite = require('./Composite');
-var Dispatcher = require('./Dispatcher');
-var DispatcherOneToMany = require('./DispatcherOneToMany');
-var HttpPostEndpoint = require('./HttpPostEndpoint');
-var Mixer = require('./Mixer');
-var PlayerEndpoint = require('./PlayerEndpoint');
-var RecorderEndpoint = require('./RecorderEndpoint');
-var RtpEndpoint = require('./RtpEndpoint');
-var WebRtcEndpoint = require('./WebRtcEndpoint');
+var AlphaBlending = __kurento_require('./AlphaBlending');
+var Composite = __kurento_require('./Composite');
+var Dispatcher = __kurento_require('./Dispatcher');
+var DispatcherOneToMany = __kurento_require('./DispatcherOneToMany');
+var HttpPostEndpoint = __kurento_require('./HttpPostEndpoint');
+var Mixer = __kurento_require('./Mixer');
+var PlayerEndpoint = __kurento_require('./PlayerEndpoint');
+var RecorderEndpoint = __kurento_require('./RecorderEndpoint');
+var RtpEndpoint = __kurento_require('./RtpEndpoint');
+var WebRtcEndpoint = __kurento_require('./WebRtcEndpoint');
 
 
 exports.AlphaBlending = AlphaBlending;
@@ -34295,10 +34295,10 @@ exports.RecorderEndpoint = RecorderEndpoint;
 exports.RtpEndpoint = RtpEndpoint;
 exports.WebRtcEndpoint = WebRtcEndpoint;
 
-exports.abstracts    = require('./abstracts');
-exports.complexTypes = require('./complexTypes');
+exports.abstracts    = __kurento_require('./abstracts');
+exports.complexTypes = __kurento_require('./complexTypes');
 
-},{"./AlphaBlending":84,"./Composite":85,"./Dispatcher":86,"./DispatcherOneToMany":87,"./HttpPostEndpoint":88,"./Mixer":89,"./PlayerEndpoint":90,"./RecorderEndpoint":91,"./RtpEndpoint":92,"./WebRtcEndpoint":93,"./abstracts":95,"./complexTypes":105}],"kurento-client-filters":[function(require,module,exports){
+},{"./AlphaBlending":84,"./Composite":85,"./Dispatcher":86,"./DispatcherOneToMany":87,"./HttpPostEndpoint":88,"./Mixer":89,"./PlayerEndpoint":90,"./RecorderEndpoint":91,"./RtpEndpoint":92,"./WebRtcEndpoint":93,"./abstracts":95,"./complexTypes":105}],"kurento-client-filters":[function(__kurento_require,module,exports){
 /* Autogenerated with Kurento Idl */
 
 /*
@@ -34330,10 +34330,10 @@ Object.defineProperty(exports, 'name',    {value: 'filters'});
 Object.defineProperty(exports, 'version', {value: '6.13.1-dev'});
 
 
-var FaceOverlayFilter = require('./FaceOverlayFilter');
-var GStreamerFilter = require('./GStreamerFilter');
-var ImageOverlayFilter = require('./ImageOverlayFilter');
-var ZBarFilter = require('./ZBarFilter');
+var FaceOverlayFilter = __kurento_require('./FaceOverlayFilter');
+var GStreamerFilter = __kurento_require('./GStreamerFilter');
+var ImageOverlayFilter = __kurento_require('./ImageOverlayFilter');
+var ZBarFilter = __kurento_require('./ZBarFilter');
 
 
 exports.FaceOverlayFilter = FaceOverlayFilter;
@@ -34341,9 +34341,9 @@ exports.GStreamerFilter = GStreamerFilter;
 exports.ImageOverlayFilter = ImageOverlayFilter;
 exports.ZBarFilter = ZBarFilter;
 
-exports.abstracts = require('./abstracts');
+exports.abstracts = __kurento_require('./abstracts');
 
-},{"./FaceOverlayFilter":106,"./GStreamerFilter":107,"./ImageOverlayFilter":108,"./ZBarFilter":109,"./abstracts":111}],"kurento-client":[function(require,module,exports){
+},{"./FaceOverlayFilter":106,"./GStreamerFilter":107,"./ImageOverlayFilter":108,"./ZBarFilter":109,"./abstracts":111}],"kurento-client":[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2013-2015 Kurento (http://kurento.org/)
  *
@@ -34370,14 +34370,14 @@ exports.abstracts = require('./abstracts');
  * @license ALv2
  */
 
-require('error-tojson');
+__kurento_require('error-tojson');
 
-var checkType = require('./checkType');
+var checkType = __kurento_require('./checkType');
 
-var disguise = require('./disguise')
-var MediaObjectCreator = require('./MediaObjectCreator');
-var register = require('./register');
-var TransactionsManager = require('./TransactionsManager');
+var disguise = __kurento_require('./disguise')
+var MediaObjectCreator = __kurento_require('./MediaObjectCreator');
+var register = __kurento_require('./register');
+var TransactionsManager = __kurento_require('./TransactionsManager');
 
 exports.checkType = checkType;
 exports.disguise = disguise;
@@ -34387,7 +34387,7 @@ exports.TransactionsManager = TransactionsManager;
 
 // Export KurentoClient
 
-var KurentoClient = require('./KurentoClient');
+var KurentoClient = __kurento_require('./KurentoClient');
 
 module.exports = KurentoClient;
 KurentoClient.KurentoClient = KurentoClient;
@@ -34406,7 +34406,7 @@ register('kurento-client-core')
 register('kurento-client-elements')
 register('kurento-client-filters')
 
-},{"./KurentoClient":1,"./MediaObjectCreator":2,"./TransactionsManager":3,"./checkType":5,"./disguise":7,"./register":8,"error-tojson":20}],"promisecallback":[function(require,module,exports){
+},{"./KurentoClient":1,"./MediaObjectCreator":2,"./TransactionsManager":3,"./checkType":5,"./disguise":7,"./register":8,"error-tojson":20}],"promisecallback":[function(__kurento_require,module,exports){
 /*
  * (C) Copyright 2014-2015 Kurento (http://kurento.org/)
  *
